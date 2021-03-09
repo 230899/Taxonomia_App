@@ -1,0 +1,272 @@
+﻿@model Taxonomia_App.Models.SKU
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Registrar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>SKU</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <h3>Nombre: </h3>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", id = "name" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+
+        <div class="col">
+            <select class="custom-select" id="Division" name="Division">
+                <option selected>Division</option>
+                @foreach (var division in ViewBag.divisiones)
+                {
+                    <option value="@division.Id">@division.Division1</option>
+                }
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <select class="custom-select" id="Genero" name="Genero">
+                    <option selected>Genero</option>
+                    @foreach (var genero in ViewBag.generos)
+                    {
+                        <option value="@genero.Id">@genero.Genero1</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col">
+                <select class="custom-select" id="Familia" name="Familia">
+                    <option selected>Familia</option>
+                    @foreach (var familia in ViewBag.familias)
+                    {
+                        <option value="@familia.Id">@familia.Familia1</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col">
+                <select class="custom-select" id="Modelo" name="Modelo">
+                    <option selected>Modelo</option>
+                    @foreach (var modelo in ViewBag.modelos)
+                    {
+                        <option value="@modelo.Id">@modelo.Modelo1</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="col">
+            <select class="custom-select" id="Colorp" name="Colorp">
+                <option selected>Color Primario</option>
+                @foreach (var colorPrimario in ViewBag.coloresPrimarios)
+                {
+                    <option value="@colorPrimario.Id">@colorPrimario.Color_prim1</option>
+                }
+            </select>
+        </div>
+
+        <div class="col">
+            <select class="custom-select" id="Colors" name="Colors">
+                <option selected>Color Secundario</option>
+                @foreach (var colorSec in ViewBag.coloresSec)
+                {
+
+                    <option value="@colorSec.Id" style="background-color: @colorSec.Color_sec1">@colorSec.Color_sec1</option>
+                }
+            </select>
+        </div>
+
+        <div class="col">
+            <select class="custom-select" id="Material" name="Material">
+                <option selected>Material</option>
+                @foreach (var material in ViewBag.materiales)
+                {
+                    <option value="@material.Id">@material.Material1</option>
+                }
+            </select>
+        </div>
+
+        <div class="col">
+            <select class="custom-select" id="talla" name="talla">
+                <option selected>Talla</option>
+
+                @foreach (var talla in ViewBag.tallas)
+                {
+                    <option value="@talla.Num_Talla">@talla.Talla1</option>
+
+                }
+
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" onclick="ShowSelected()" value="Generar código" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter"/>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { id = "sku", @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" onclick="guardar()" value="Guardar" class="btn btn-primary" />
+            <!-- <input type="button" onclick="guardar()" class="btn btn-primary" value="Guardar" data-toggle="modal" data-target="#exampleModalCenter" />-->
+        </div>
+    </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Código Generado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="p-alert"></p>
+                    <div class="alert alert-primary" role="alert" hidden>
+                        Código copiado
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-md-offset-2">
+                        <input type="button" onclick="copiarCodigo()" value="Copiar código" class="btn btn-success" />
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+
+
+<script type="text/javascript">
+    var codigo;
+    function ShowSelected() {
+        var cod = document.getElementById("Division").value;
+
+        var cod1 = document.getElementById("Genero").value;
+
+        var cod2 = document.getElementById("Familia").value;
+
+        var cod3 = document.getElementById("Modelo").value;
+
+        var cod4 = document.getElementById("Colorp").value;
+
+        var cod5 = document.getElementById("Colors").value;
+
+        var cod6 = document.getElementById("Material").value;
+
+        var cod7 = document.getElementById("talla").value;
+
+        if (cod == null || cod == "Division" || cod1 == null || cod1 == "Genero" || cod2 == null || cod2 == "Familia" ||
+            cod3 == null || cod3 == "Modelo" || cod4 == null || cod4 == "Colorp" || cod5 == null || cod5 == "Colors" ||
+            cod6 == null || cod6 == "Material" || cod7 == null || cod7 == "talla") {
+            alert("Por favor introduce un valor en todos los combobox")
+            document.getElementById("sku").value = null;
+        } else {
+
+            if (cod2 < 10) {
+                cod2 = 0 + cod2;
+            } else {
+                cod2 = cod2;
+            }
+
+            if (cod3 < 10) {
+                cod3 = "000" + cod3;
+            } else if (cod3 > 9 & cod3 < 99) {
+                cod3 = "00" + cod3;
+            } else if (cod3 > 99) {
+                cod3 = 0 + cod3;
+            } else {
+                cod3 = cod3;
+            }
+
+            if (cod4 < 10) {
+                cod4 = 0 + cod4;
+            } else {
+                cod4 = cod4;
+            }
+
+            if (cod5 < 10) {
+                cod5 = 0 + cod5;
+            } else {
+                cod5 = cod5;
+            }
+
+            if (cod6 < 10) {
+                cod6 = "00" + cod6;
+            } else if (cod6 > 9 & cod6 < 99) {
+                cod6 = 0 + cod6;
+            } else {
+                cod6 = cod6;
+            }
+
+
+            codigo = cod + cod1 + cod2 + cod3 + cod4 + cod5 + cod6 + cod7;
+
+
+            document.getElementById("sku").value = codigo;
+
+            document.getElementById("p-alert").innerHTML = codigo;
+        }
+
+    }
+
+    function copiarCodigo() {
+        var sku = document.getElementById("sku");
+        sku.focus();
+        sku.select();
+        document.execCommand("copy");
+        document.getElementsByClassName("alert")[0].removeAttribute("hidden");
+    }
+
+    function guardar() {
+        var sku = document.getElementById("sku");
+        var n = document.getElementById("name").value;
+        if (n = null || n == "") {
+            document.getElementById("name").focus();
+            document.getElementById("name").placeholder = "Debe llenar esté espacio";
+            
+        } else if (sku = null || sku == "") {
+            document.getElementById("sku").focus();
+            document.getElementById("sku").placeholder = "Esté espacio no puede quedar vacío";
+
+        } else {
+            document.getElementsByTagName("Form")[0].submit();
+        }
+    }
+
+</script>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

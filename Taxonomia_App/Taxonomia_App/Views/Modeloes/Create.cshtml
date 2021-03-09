@@ -1,0 +1,54 @@
+﻿@model Taxonomia_App.Models.Modelo
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Registrar</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Modelo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Modelo1, new { htmlAttributes = new { @class = "form-control", id="mode" } })
+                @Html.ValidationMessageFor(model => model.Modelo1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" onclick="guardar()" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+<script type="text/javascript">
+    function guardar() {
+        var mo = document.getElementById("mode").value;
+        if (mo = null || mo == "") {
+            document.getElementById("mode").focus();
+            document.getElementById("mode").placeholder = "Debe llenar esté espacio";
+
+        } else {
+            document.getElementsByTagName("Form")[0].submit();
+        }
+    }
+
+</script>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

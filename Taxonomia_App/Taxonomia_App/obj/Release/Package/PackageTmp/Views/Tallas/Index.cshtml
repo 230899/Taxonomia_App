@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Taxonomia_App.Models.Talla>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<a class="navbar-brand" @Html.ActionLink("Taxonomia App", "Index", "SKUs") </a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<h2>Talla</h2>
+
+<p>
+    @Html.ActionLink("Agregar", "Create")
+</p>
+<table class="table">
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Talla1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num_Talla)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

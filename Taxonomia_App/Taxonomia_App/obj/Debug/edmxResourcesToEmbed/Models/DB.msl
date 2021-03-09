@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TaxonomiaModelStoreContainer" CdmEntityContainer="TaxonomiaEntities">
+    <EntitySetMapping Name="Color_prim">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Color_prim">
+        <MappingFragment StoreEntitySet="Color_prim">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Color_prim1" ColumnName="Color_prim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Color_sec">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Color_sec">
+        <MappingFragment StoreEntitySet="Color_sec">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Color_sec1" ColumnName="Color_sec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Division">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Division">
+        <MappingFragment StoreEntitySet="Division">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Division1" ColumnName="Division" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Familia">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Familia">
+        <MappingFragment StoreEntitySet="Familia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Familia1" ColumnName="Familia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genero">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Genero">
+        <MappingFragment StoreEntitySet="Genero">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Genero1" ColumnName="Genero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Material">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Material">
+        <MappingFragment StoreEntitySet="Material">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Material1" ColumnName="Material" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modelo">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Modelo">
+        <MappingFragment StoreEntitySet="Modelo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Modelo1" ColumnName="Modelo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SKU">
+      <EntityTypeMapping TypeName="TaxonomiaModel.SKU">
+        <MappingFragment StoreEntitySet="SKU">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Talla">
+      <EntityTypeMapping TypeName="TaxonomiaModel.Talla">
+        <MappingFragment StoreEntitySet="Talla">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Talla1" ColumnName="Talla" />
+          <ScalarProperty Name="Num_Talla" ColumnName="Num_Talla" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
